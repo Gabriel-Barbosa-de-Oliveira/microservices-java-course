@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class UserService {
@@ -16,6 +17,8 @@ public class UserService {
     }
 
     public List<User> addUser(User user) {
+        Long id = new Random().nextLong();
+        user.setId(id);
         userList.add(user);
         return userList;
     }
