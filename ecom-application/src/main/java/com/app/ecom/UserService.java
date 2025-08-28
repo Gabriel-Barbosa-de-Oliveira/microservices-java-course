@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -21,12 +22,10 @@ public class UserService {
         userList.add(user);
     }
 
-    public User fetchUser(Long id) {
-        for (User user : userList) {
-            if (user.getId().equals(id)) {
-                return user;
-            }
-        }
-        return null;
+    public Optional<User> fetchUser(Long id) {
+        return userList.stream()
+                .filter(user -> user.getId().equals(id))
+                .findFirst();
     }
+
 }
