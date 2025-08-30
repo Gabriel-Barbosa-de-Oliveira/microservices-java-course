@@ -35,11 +35,20 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+
     @PostMapping("/api/users")
     public ResponseEntity<String> createUser(@RequestBody User user) {
         userService.addUser(user);
         return ResponseEntity.ok("User add successfully!");
 
+    }
+
+    @PutMapping("/api/users/{id}")
+    public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+        boolean updated = userService.updateUser(id, updatedUser);
+        if (updated)
+            return ResponseEntity.ok("User update successfully!");
+        return ResponseEntity.notFound().build();
     }
 
 
