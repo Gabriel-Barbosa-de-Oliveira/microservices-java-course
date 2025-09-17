@@ -8,10 +8,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity(name = "user_table")
+@Data // Gera get e set para os objetos
+@NoArgsConstructor // Gera um construtor Vazio
+//@AllArgsConstructor // Gera um construtor para o objeto com todos os params
+//@Entity(name = "user_table") // Troca nome da entidade
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
