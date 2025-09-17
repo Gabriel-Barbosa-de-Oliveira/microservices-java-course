@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 @Data // Gera get e set para os objetos
 @NoArgsConstructor // Gera um construtor Vazio
 //@AllArgsConstructor // Gera um construtor para o objeto com todos os params
-//@Entity(name = "user_table") // Troca nome da entidade
+@Entity(name = "user_table") // Troca nome da entidade
+//@Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
