@@ -1,13 +1,12 @@
-package com.app.ecom;
+package com.app.ecom.service;
 
+import com.app.ecom.repository.UserRepository;
+import com.app.ecom.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 @RequiredArgsConstructor // Instancia Repositorios

@@ -1,13 +1,13 @@
-package com.app.ecom;
+package com.app.ecom.controller;
 
+import com.app.ecom.model.User;
+import com.app.ecom.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Random;
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
