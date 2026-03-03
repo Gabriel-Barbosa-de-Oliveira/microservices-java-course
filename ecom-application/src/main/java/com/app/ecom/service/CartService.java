@@ -7,14 +7,18 @@ import com.app.ecom.model.User;
 import com.app.ecom.repository.CartItemRepository;
 import com.app.ecom.repository.ProductRepository;
 import com.app.ecom.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CartService {
 
     private final ProductRepository productRepository;
@@ -59,5 +63,29 @@ public class CartService {
         }
 
         return true;
+    }
+
+    public boolean deleteItemFromCart(String userId, Long productId) {
+        Optional<Product> productOpt = productRepository.findById(productId);
+        Optional<User> userOpt = userRepository.findById(Long.valueOf(userId));
+
+        if (productOpt.isPresent() && userOpt.isPresent()) {
+            cartItemRepository.deleteByUserAndProduct(userOpt.get(), productOpt.get());
+            return true;
+        }
+
+
+        return false;
+
+    }
+
+    public List<CartItem> getCart(String userId) {
+        return userRepository.findById(Long.valueOf(userId))
+                .map(cartItemRepository::findByUser)
+                .orElseGet(List::of);
+    }
+
+    public void clearCart(String userId) {
+        userRepository.findById(Long.valueOf(userId)).ifPresent(cartItemRepository::deleteByUser);
     }
 }
